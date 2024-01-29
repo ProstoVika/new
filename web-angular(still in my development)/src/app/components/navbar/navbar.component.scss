@@ -1,0 +1,124 @@
+nav {
+  position: sticky;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 100;
+  transition: background-color 0.3s;
+  overflow: hidden;
+  padding: 2rem 15rem;
+  pointer-events: auto;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  &:hover {
+    background-color: #353535;
+    box-shadow: 0 4px 2px -3px #A7AFC3, 0 4px 4px 1px #ffffff, 0 2px 7px 1px #e2e5fa;
+  }
+
+  .btn-header-logo {
+    margin-top: 10px;
+    top: 0;
+    transform: none;
+    position: relative;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border: 1.2px solid transparent;
+
+    &:hover {
+      border: 1.2px solid #ffffff;
+      border-bottom: none;
+    }
+
+    .logo {
+      left: 0;
+      display: block;
+      width: 40px;
+      height: 40px;
+      position: relative;
+      border: 1.2px solid transparent;
+      border-bottom: none;
+
+      &::before {
+        content: "";
+        position: absolute;
+        display: block;
+        height: 43px;
+        width: 1px;
+        right: 0;
+        bottom: -3px;
+        background: #ffffff;
+        transition: left 5s cubic-bezier(0, 0, 1, 1);
+        transform: rotate(27deg);
+        zoom: 1;
+        transform-origin: 0 0;
+      }
+
+      &::after {
+        position: absolute;
+        content: "";
+        display: block;
+        width: 43px;
+        height: 1px;
+        left: 1px;
+        background: #ffffff;
+        -ms-transform: rotate(63deg);
+        transform: rotate(63deg);
+        transform-origin: 0 0;
+      }
+    }
+  }
+
+  .left-link, .right-link {
+    display: flex;
+    justify-content: center;
+    padding: 15px 8px 6px 10px;
+    text-decoration: none;
+    font-size: 24px;
+    color: #ffffff;
+    transition: color 0.3s;
+
+    &:hover {
+      color: rgb(113, 112, 112);
+      transform: scale(1.05);
+      transition: transform 0.3s;
+    }
+  }
+
+}
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem;
+
+    .btn-header-logo {
+      left: 0;
+    }
+
+    a {
+      margin: 10px 0;
+      padding: 10px 0;
+      width: 100%;
+      text-align: center;
+
+    }
+  }
+}
+
+
+@media (max-width: 600px) {
+  nav {
+    padding: 1rem;
+  }
+
+  .navbar-background-image {
+
+    width: 100%;
+  }
+}

@@ -1,0 +1,40 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<div class="navbar-background-video">
+    <video autoplay loop muted>
+        <source src="https://player.vimeo.com/external/610925757.sd.mp4?s=d9f6a8b05d801e452e43a4cf0956f81547e14afe&profile_id=164&oauth2_token_id=57447761"
+                type="video/mp4">
+    </video>
+</div>
+<link href="https://fonts.googleapis.com/css?family=Russo+One&display=swap" rel="stylesheet">
+<h2 class="some-text"><span>SNOWBOARD</span> COLLECTION</h2>
+
+<div class="navbar-background-image">
+    <h2 class="title">Design-driven performance snowboarding components for handmade and bespoke cars...</h2>
+</div>
+<div class="container">
+
+    <div class="img-container" *ngFor="let product of products">
+        <div class="image-wrapper">
+            <div class="discount-circle"
+        [ngClass]="{'first': product.discount >= 70, 'second': product.discount >= 60 && product.discount < 70, 'third': product.discount < 60}">{{ product.discount }}
+                %
+            </div>
+
+            <a [routerLink]="['/product', product.id]">
+                <img [src]="product.images[0].imgUrl" [alt]="product.name" class="img"/>
+                <button class="bag-btn">
+                    <i class="material-icons">favorite_border</i>
+                </button>
+            </a>
+        </div>
+
+        <div class="product-info">
+            <h3>{{ product.name }}</h3>
+            <p>Price: {{ product.price | currency:'EUR':'symbol':'1.0-0' }}</p>
+            <p>Description: {{ product.description | descriptionLimit: 35 }}</p>
+            <p>Discount: {{ product.discount }}%</p>
+        </div>
+    </div>
+</div>
+

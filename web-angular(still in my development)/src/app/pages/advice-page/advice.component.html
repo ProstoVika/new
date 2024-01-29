@@ -1,0 +1,16 @@
+
+<div *ngIf="adviceData$ | async as advice; else loading">
+  {{ advice }}
+</div>
+<div class="button-group">
+  <button class="button" role="button" (click)="handleButtonClick('Be happy')">
+    <span class="text">Be Happy</span>
+  </button>
+  <button class="button" role="button" (click)="handleButtonClick('Enjoy life')">
+    <span class="text">Enjoy Life</span>
+  </button>
+</div>
+
+
+
+<ng-template #loading></ng-template>

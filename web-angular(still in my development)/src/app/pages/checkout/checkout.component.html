@@ -1,0 +1,82 @@
+<div class="order">
+    <div *ngIf="currentStep === 1">
+        <h3 class="title-order">SHOPPING BAG ITEMS</h3>
+      <div class="order-size-guide">
+        <p>Need more information on sizing?</p>
+        <p class="size">View our size guide</p>
+      </div>
+
+        <div *ngFor="let product of cartItems$ | async" class="product-item">
+            <img [src]="product.imgUrl" alt="{{ product.name }}" class="product-image"/>
+            <div class="product-details-checkout">
+                <h2 class="cart-item-name">{{ product?.name }}</h2>
+                <p class="cart-item-price">{{ product?.price | currency:'EUR':'symbol':'1.0-0' }}</p>
+                <p class="cart-item-color">Color: {{ product?.selectedColor }}</p>
+                <p class="cart-item-size">Size: {{ product?.selectedSize }}</p>
+                <p>Price: {{ product.price | currency:'EUR':'symbol':'1.0-0' }}</p>
+                <div class="quantity-controls"> Quantity:
+                  <button (click)="decreaseQuantity(product)">-</button>
+                    <p class="cart-item-quantity">{{ product?.quantity || 0 }}</p>
+                    <button (click)="increaseQuantity(product)">+</button>
+                    <p class="cart-item-subtotal">{{ getSubtotal(product) | currency:'EUR':'symbol':'1.0-0'}}</p>
+                </div>
+            </div>
+            <button (click)="removeFromCart(product.id, product.selectedColor, product.selectedSize)"class="remove-button-checkout"><i class="fas fa-times"></i></button>
+        </div>
+
+        <div class="cart-total-order">
+            <p>ORDER SUMMARY</p>
+            <p>Total: {{ total | currency:'EUR':'symbol':'1.0-0'}}</p>
+        </div>
+        <button type="button" class="next-order-btn" (click)="nextStep()">Proceed to checkout</button>
+    </div>
+
+
+  <div *ngIf="currentStep === 2">
+    <h1>Your information</h1>
+    <h2>Delivery</h2>
+    <p>The address should be in the UK.</p>
+
+    <div formGroupName="deliveryAddress">
+      <div>
+        <label for="email">Email address</label>
+        <input type="text" id="email" formControlName="email" />
+      </div>
+      <div>
+        <label for="zip">Postal code</label>
+        <input type="text" id="zip" formControlName="zip" />
+      </div>
+      <div>
+        <label for="city">City</label>
+        <input type="text" id="city" formControlName="city" />
+      </div>
+      <div>
+        <label for="address">Address</label>
+        <input type="text" id="address" formControlName="address" />
+      </div>
+    </div>
+    <button type="button" class="next-order-btn" (click)="nextStep()">Continue</button>
+  </div>
+
+  <div *ngIf="currentStep === 3">
+    <h2>Payment Method</h2>
+
+    <label>
+      <input type="radio" formControlName="paymentMethod" value="card"> Credit Card
+    </label>
+
+    <label>
+      <input type="radio" formControlName="paymentMethod" value="paypal"> PayPal
+    </label>
+
+    <label>
+      <input type="radio" formControlName="paymentMethod" value="cash"> Cash
+    </label>
+
+
+    <button type="button" (click)="previousStep()">Previous</button>
+    <button type="button" (click)="submitOrder()">Pay Order</button>
+  </div>
+
+
+</div>

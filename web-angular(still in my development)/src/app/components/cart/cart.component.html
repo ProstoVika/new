@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+      crossorigin="anonymous"/>
+
+<div class="cart">
+
+ <div class="cart-button-container" (click)="toggleCartVisibility()">
+    <span class="cart-text">CART</span>
+     <span id="cart-count-info">({{ (totalItemsQuantity$ | async) || 0 }})</span>
+  </div>
+
+  <div class="cart-container" [ngClass]="{'show': isCartVisible$ | async}">MY BAG
+    <button (click)="toggleCartVisibility()" class="remove-button-all"><i class="fas fa-times"></i></button>
+    <div *ngIf="cartItems$ | async as cartItems; else emptyCart">
+      <div *ngFor="let item of cartItems" class="item">
+        <img [src]="item.imgUrl" alt="{{ item.name }}" class="cart-item-image"/>
+
+        <div class="details-cart">
+          <button (click)="removeFromCart(item.id, item.selectedColor, item.selectedSize )"
+                  class="remove-button"><i class="fas fa-times"></i></button>
+
+          <h2 class="cart-item-name">{{ item?.name }}</h2>
+          <p class="cart-item-price">{{ item?.price | currency:'EUR':'symbol':'1.0-0' }}</p>
+          <p class="cart-item-color">Color: {{ item?.selectedColor }}</p>
+          <p class="cart-item-size">Size: {{ item?.selectedSize }}</p>
+          <div class="quantity-controls"> Quantity:
+            <button (click)="decreaseQuantity(item)">-</button>
+            <p class="cart-item-quantity">{{ item?.quantity || 0 }}</p>
+            <button (click)="increaseQuantity(item)">+</button>
+            <p class="cart-item-subtotal">{{ getSubtotal(item) | currency:'EUR':'symbol':'1.0-0'}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cart-total">
+      <p>Total: {{ total | currency:'EUR':'symbol':'1.0-0'}}</p>
+    </div>
+
+    <button class="proceed-to-checkout-btn" (click)="proceedToCheckout()">GO TO SHOPPING BAG</button>
+    <ng-template #emptyCart>
+      <div class="empty-cart">Your shopping bag is empty.</div>
+    </ng-template>
+  </div>
+
+</div>
+
+

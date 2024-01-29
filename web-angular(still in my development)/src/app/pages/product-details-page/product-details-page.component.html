@@ -1,0 +1,60 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+<div *ngIf="product$ | async as product; else loading" class="product-details-container">
+  <div class="img-container">
+    <img [src]="additionalImageUrl || product?.imgUrl" [alt]="product?.name" class="main-image"
+         [ngStyle]="{ 'transform': zoomed ? 'scale(1.2)' : 'scale(1)' }"/>
+    <button class="zoom-button" (click)="toggleZoom()">+ zoom</button>
+    <div class="additional-images">
+      <img *ngFor="let image of product?.images" [src]="image.imgUrl" [alt]="product?.name"
+           class="additional-image" (click)="toggleMainImage(image.imgUrl)"/>
+    </div>
+  </div>
+
+  <div class="product-info">
+    <h1>{{ product.name }}</h1>
+
+    <div class="full-description">
+      <p [innerText]="showFullDescription ? product.description : product.description | descriptionLimit:180"></p>
+    </div>
+    <button class="read-more-button" (click)="toggleDescription()">Read more</button>
+
+
+    <div #ratingStars class="product-rating">
+      <span *ngFor="let star of [1, 2, 3, 4, 5]" class="star" [class.full]="star <= productRating" #star>&#9733;</span>
+    </div>
+
+    <button class="show-comments-button" (click)="toggleComments()">Read reviews</button>
+    <div #comments class="comments" *ngIf="showComments">
+      <div *ngFor="let comment of product?.review">
+        <p class="author">{{ comment.author }}</p>
+        <p>{{ comment.text }}</p>
+      </div>
+    </div>
+
+    <div class="color">Color
+      <select [(ngModel)]="selectedColor">
+        <option *ngFor="let color of product.productColors" [value]="color">{{ color }}</option>
+      </select>
+    </div>
+
+    <div class="size">Size
+      <select [(ngModel)]="selectedSize">
+        <option *ngFor="let size of product.productSizes" [value]="size">{{ size }}</option>
+      </select>
+    </div>
+
+    <p><strong>Availability: please select options</strong> {{ product.shipping }}</p>
+
+    <button class="cart-button" (click)="addToCart()">
+      <i class="material-icons">shopping_cart</i> Add to cart
+    </button>
+
+    <button class="wish-button">
+      <i class="material-icons">favorite_border</i> Add to wish list
+    </button>
+  </div>
+</div>
+
+<ng-template #loading> </ng-template>

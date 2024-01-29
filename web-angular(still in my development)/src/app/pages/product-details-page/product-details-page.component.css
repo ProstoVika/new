@@ -1,0 +1,154 @@
+.product-details-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+  border: 1px solid #ffffff;
+  margin-bottom: 20px;
+}
+.product-details-container .img-container {
+  flex: 1;
+  position: relative;
+  padding: 20px;
+}
+.product-details-container .img-container .main-image {
+  cursor: pointer;
+  object-fit: cover;
+  max-width: 100%;
+  transition: transform 0.1s;
+}
+.product-details-container .img-container .main-image.zoomed {
+  cursor: zoom-out;
+  transform: scale(1.1);
+  transition: transform 0.3s;
+}
+.product-details-container .img-container .additional-images {
+  display: flex;
+  margin-top: 50px;
+  justify-content: center;
+  gap: 10px;
+}
+.product-details-container .img-container .additional-images .additional-image {
+  cursor: pointer;
+  object-fit: cover;
+  max-width: 60px;
+  transition: transform 0.1s;
+}
+.product-details-container .img-container .additional-images .additional-image:hover {
+  transform: scale(1.2);
+}
+.product-details-container .img-container .zoom-button {
+  position: absolute;
+  bottom: 80px;
+  right: 50%;
+  transform: translateX(50%);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #333;
+  padding: 5px;
+  font-size: 16px;
+}
+.product-details-container .img-container .main-image.zoomed {
+  cursor: zoom-in;
+  transition: transform 0.3s;
+}
+.product-details-container .img-container .main-image.zoomed:hover {
+  transform: scale(1.2);
+}
+.product-details-container .product-info {
+  flex: 1;
+  padding: 20px;
+  margin: 50px;
+  line-height: 1.5;
+  border: 1px solid #ffffff;
+}
+.product-details-container .product-info .full-description {
+  color: #151414;
+  margin-top: 20px;
+  padding: 10px;
+}
+.product-details-container .product-info .read-more-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #007bff;
+}
+.product-details-container .product-info .star {
+  font-size: 24px;
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.product-details-container .product-info .star.full {
+  color: #d0a416;
+}
+.product-details-container .product-info .star:hover {
+  color: #d0a416;
+}
+.product-details-container .product-info .comments {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+.product-details-container .product-info .color, .product-details-container .product-info .size {
+  margin-bottom: 20px;
+}
+.product-details-container .product-info .color select, .product-details-container .product-info .size select {
+  width: 100%;
+  height: 40px;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  color: #304731;
+  box-shadow: 0 3px 1px -2px #6d7863, 0 2px 2px 0 #6d7863, 0 1px 5px 0 #6d7863;
+  outline: none;
+}
+.product-details-container .product-info .color select:focus, .product-details-container .product-info .size select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 3px rgba(0, 123, 255, 0.5);
+}
+.product-details-container .product-info input {
+  width: 50px;
+  padding: 8px;
+  height: 20px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+.product-details-container .product-info input:focus {
+  color: #304731;
+  box-shadow: 0 3px 1px -2px #6d7863, 0 2px 2px 0 #6d7863, 0 1px 5px 0 #6d7863;
+}
+.product-details-container .product-info .show-comments-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #007bff;
+}
+.product-details-container .product-info .cart-button,
+.product-details-container .product-info .wish-button {
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  height: 40px;
+  letter-spacing: var(--mainSpacing);
+  font-size: 0.9rem;
+  color: #304731;
+  box-shadow: 0 3px 1px -2px #6d7863, 0 2px 2px 0 #6d7863, 0 1px 5px 0 #6d7863;
+  border: none;
+  background-color: transparent;
+  z-index: 2;
+  margin-top: 10px;
+  transition: opacity 0.3s;
+}
+.product-details-container .product-info .cart-button:hover,
+.product-details-container .product-info .wish-button:hover {
+  opacity: 0.9;
+  color: #d39e2d;
+}
+
+/*# sourceMappingURL=product-details-page.component.css.map */
